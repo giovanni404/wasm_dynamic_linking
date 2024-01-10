@@ -13,7 +13,7 @@ While the goal is to show how to build a WASM application that links to its WASM
 3. foo2.c - WASM module
 4. pre.js - Contains the list of WASM modules a.k.a. SIDE_MODULEs that need to be preloaded when running the WASM application a.k.a. MAIN_MODULE in a Web Browser
 
-## Build a standalone WASM application containing statically linked WASM modules:
+## Build a standalone WASM application containing WASM modules statically linked at buildtime:
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
 ```
@@ -42,7 +42,7 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
 ```
-TODO:
+TODO: Figure out how dynamic linking works in a WASI environment.
 ```
 
 ### For running in a Web Browser (e.g., **Chrome**)
