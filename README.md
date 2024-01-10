@@ -34,4 +34,4 @@ In this case the generated wasm file depends on an Emscripten JS runtime. The th
 ```
 $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application/"chrome.exe
 ```
-![alt text](https://github.com/giovanni404/wasm_dynamic_linking/images/browser.png "Web Browser Output")
+![alt text](https://github.com/giovanni404/wasm_dynamic_linking/tree/main/images/browser.png "Web Browser Output")
