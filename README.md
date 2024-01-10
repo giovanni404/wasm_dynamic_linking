@@ -30,7 +30,7 @@ hello world 3
 ```
 $emcc main.c foo1.c foo2.c -o main.html
 ```
-In this case the generated wasm file depends on an Emscripten JS runtime. The the HTML and WASM files need to be served by a local Web Server like **Chrome**:
+In this case the generated WASM file depends on a JavaScript Engine for execution. Run the HTML and WASM files using a Web Browser like **Chrome**:
 
 ```
 $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application/"chrome.exe
@@ -51,7 +51,7 @@ $emcc foo1.c -s SIDE_MODULE=1 -o foo1.wasm
 $emcc foo2.c -s SIDE_MODULE=1 -o foo2.wasm
 $emcc main.c -s MAIN_MODULE=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 --pre-js pre.js -o main.html
 ```
-In this case the generated wasm file depends on an Emscripten JS runtime. The the HTML and WASM files need to be served by a local Web Server like **Chrome**:
+In this case the generated WASM file depends on a JavaScript Engine for execution. Run the HTML and WASM files using a Web Browser like **Chrome**:
 
 ```
 $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application/"chrome.exe
