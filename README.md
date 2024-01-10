@@ -15,7 +15,7 @@ While the goal is to show how to build a WASM application that links to its WASM
 3. foo2.c - WASM module
 4. pre.js - Contains the list of WASM modules that need to be preloaded (for dynamic linking to at run time) when the WASM application runs in a Web Browser
 
-## Build a standalone WASM application containing WASM modules statically linked at build time:
+## Create a standalone WASM application containing WASM modules statically linked at build time:
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
 
@@ -46,7 +46,7 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 
 ![Web Browser Output image is supposed to appear here](images/browser.png "Web Browser Output")
 
-## Build a WASM application and the WASM modules it needs to link to (independantly of each other):
+## Create a WASM application and the WASM modules it needs to link to (independantly of each other):
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
 
@@ -84,6 +84,6 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 #### Web Browser Output
 
 **Note:**
-For both these 2 cases, Web Browser output should be identical to that of the standalone WASM application (shown above), however for dynamic linking at run time to work, the modified main.js source code with the list of 'dynamicLibraries' to preload, must successfully execute!
+In both cases, Web Browser output should be identical to that of the standalone WASM application (shown above), however for dynamic linking at run time to work, the modified main.js source code with the list of 'dynamicLibraries' to preload, must successfully execute!
 
 ![JavaScript Source Code image is supposed to appear here](images/js-src.png "Modified JavaScript source code containing list of 'dynamicLibraries' that must be preloaded")
