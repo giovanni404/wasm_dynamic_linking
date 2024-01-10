@@ -59,6 +59,6 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 
 #### Web Browser Output
 **Note:**
-Web Browser output should be identical to that of the standalone WASM application (shown above), however for it to have worked, the modified main.js source code containing the list of 'dynamicLibraries' to preloaded, must have worked!
+Web Browser output should be identical to that of the standalone WASM application (shown above), however for it to work, the modified main.js source code with the list of 'dynamicLibraries' to preload, must successfully execute!
 
 ![JavaScript Source Code image is supposed to appear here](images/js-src.png "Modified JavaScript source code containing list of 'dynamicLibraries' that must be preloaded")
