@@ -11,7 +11,7 @@ While the goal is to show how to build a WASM application that links to its WASM
 1. main.c - WASM application
 2. foo1.c - WASM module
 3. foo2.c - WASM module
-4. pre.js - Contains the list of WASM modules a.k.a. SIDE_MODULEs that need to be preloaded when running the WASM application a.k.a. MAIN_MODULE in a Web Browser
+4. pre.js - Contains the list of WASM modules a.k.a. SIDE_MODULEs that need to be preloaded when running the WASM application a.k.a. MAIN_MODULE in a Web Browser when using dynamic linking
 
 ## Build a standalone WASM application containing WASM modules statically linked at buildtime:
 
