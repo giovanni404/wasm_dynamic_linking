@@ -1,4 +1,5 @@
 # wasm_dynamic_linking
+
 WebAssembly Dynamic Linking Example using [**Emscripten**.](https://emscripten.org/index.html)
 
 ## Background
@@ -8,6 +9,7 @@ While the goal is to show how to build a WASM application that links to its WASM
 [Read this slightly outdated article for some background.](https://yushulx.medium.com/webassembly-building-standalone-and-dynamic-linking-modules-in-windows-bd4492d0688f) Then follow on from here for updated methods.
 
 ## Main Project Files
+
 1. main.c - WASM application
 2. foo1.c - WASM module
 3. foo2.c - WASM module
@@ -16,9 +18,11 @@ While the goal is to show how to build a WASM application that links to its WASM
 ## Build a standalone WASM application containing WASM modules statically linked at buildtime:
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
+
 ```
 $emcc main.c foo1.c foo2.c -o main.wasm
 ```
+
 The generated wasm file doesn’t depend on an Emscripten JS runtime. We can run it in wasi-supporting runtimes, such as **wasmtime**:
 
 ```
@@ -27,30 +31,37 @@ hello world 3
 ```
 
 ### For running in a Web Browser (e.g., **Chrome**)
+
 ```
 $emcc main.c foo1.c foo2.c -o main.html
 ```
+
 In this case the generated WASM file depends on a JavaScript Engine for execution. Run the HTML and WASM files using a Web Browser like **Chrome**:
 
 ```
 $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application/"chrome.exe
 ```
+
 #### Web Browser Output
+
 ![Web Browser Output image is supposed to appear here](images/browser.png "Web Browser Output")
 
 ## Build a WASM application and the WASM modules it needs to link to dynamically at runtime (independantly of each other):
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
+
 ```
 TODO: Figure out how dynamic linking works in a WASI environment.
 ```
 
 ### For running in a Web Browser (e.g., **Chrome**)
+
 ```
 $emcc foo1.c -s SIDE_MODULE=1 -o foo1.wasm
 $emcc foo2.c -s SIDE_MODULE=1 -o foo2.wasm
 $emcc main.c -s MAIN_MODULE=1 -s ERROR_ON_UNDEFINED_SYMBOLS=0 --pre-js pre.js -o main.html
 ```
+
 In this case the generated WASM file depends on a JavaScript Engine for execution. Run the HTML and WASM files using a Web Browser like **Chrome**:
 
 ```
@@ -58,6 +69,7 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 ```
 
 #### Web Browser Output
+
 **Note:**
 Web Browser output should be identical to that of the standalone WASM application (shown above), however for it to work, the modified main.js source code with the list of 'dynamicLibraries' to preload, must successfully execute!
 
