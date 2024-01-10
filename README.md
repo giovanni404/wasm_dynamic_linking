@@ -15,7 +15,7 @@ While the goal is to show how to build a WASM application that links to its WASM
 3. foo2.c - WASM module
 4. pre.js - Contains the list of WASM modules that need to be preloaded (for dynamic linking to at run time) when the WASM application runs in a Web Browser
 
-## Build a standalone WASM application containing WASM modules statically linked at buildtime:
+## Build a standalone WASM application containing WASM modules statically linked at build time:
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
 
@@ -23,7 +23,7 @@ While the goal is to show how to build a WASM application that links to its WASM
 $emcc main.c foo1.c foo2.c -o main.wasm
 ```
 
-The generated wasm file doesn’t depend on an Emscripten JS runtime. We can run it in wasi-supporting runtimes, such as **wasmtime**:
+As this generates only a WASM file, we can run it in wasi-supporting runtimes, such as **wasmtime**:
 
 ```
 $wasmtime main.wasm 
