@@ -35,6 +35,7 @@ In this case the generated wasm file depends on an Emscripten JS runtime. The th
 ```
 $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application/"chrome.exe
 ```
+#### Web Browser Output
 ![Web Browser Output image is supposed to appear here](images/browser.png "Web Browser Output")
 
 ## Build a WASM application and the WASM modules it needs to link to dynamically at runtime (independantly of each other):
@@ -55,5 +56,9 @@ In this case the generated wasm file depends on an Emscripten JS runtime. The th
 ```
 $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application/"chrome.exe
 ```
-**Note:** Console output should be identical to that of the standalone WASM application (shown above), but for it to have worked, the modified main.js source code containing the list of 'dynamicLibraries' to preloaded, must have worked!
+
+#### Web Browser Output
+**Note:**
+Web Browser output should be identical to that of the standalone WASM application (shown above), however for it to have worked, the modified main.js source code containing the list of 'dynamicLibraries' to preloaded, must have worked!
+
 ![JavaScript Source Code image is supposed to appear here](images/js-src.png "Modified JavaScript source code containing list of 'dynamicLibraries' that must be preloaded")
