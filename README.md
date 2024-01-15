@@ -4,7 +4,7 @@ WebAssembly Dynamic Linking using [**Emscripten**.](https://emscripten.org/docs/
 
 ## Background
 
-There are 3 way to do dynamic linking with WebAssembly:
+There are 3 ways to do dynamic linking with WebAssembly:
 1. Your C or C++ code can manually link to a module by using the ```dlopen``` function.
 2. You can instruct Emscripten that there are WebAssembly modules to link to by specifying them in the ```dynamicLibraries``` array of Emscripten’s generated JavaScript file. When Emscripten instantiates the WebAssembly module, it will automatically download and link modules that are specified in this array.
 3. In your JavaScript, you can manually take the exports of one module and pass them in as imports to another using the WebAssembly JavaScript API.
@@ -14,7 +14,7 @@ Chapter 7. Dyamic linking: The basics, from [WebAssembly in Action](https://www.
 
 ## Purpose
 
-While the goal is to show how to build a WASM application that links to its WASM modules dynamically at run time, first we'll show how to statically link the WASM modules to the WASM application at time of build, for comparison purposes.
+While the purpose of this is to show how to build a WASM application that links to its WASM modules dynamically at run time - first we'll see how to statically link the WASM modules to the WASM application at time of build, for comparison purposes. Option #2 above, using the ```dynamicLibraries``` array way, is ideal when compiling existing C/C++ source code to WASM, since this doesn't require altering any of the existing source code, unlike the other 2 ways.
 
 [Read this slightly outdated article for additional background.](https://yushulx.medium.com/webassembly-building-standalone-and-dynamic-linking-modules-in-windows-bd4492d0688f) Then look below for sequence of commands and updated arguments.
 
@@ -95,3 +95,6 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 In both cases, Web Browser output should be identical to that of the standalone WASM application (shown above), however for dynamic linking at run time to work, the modified main.js source code with the list of 'dynamicLibraries' to preload, must successfully execute!
 
 ![JavaScript Source Code image is supposed to appear here](images/js-src.png "Modified JavaScript source code containing list of 'dynamicLibraries' that must be preloaded")
+
+**Reference:** 
+[Emscripten linker output files cheat sheet.](https://emscripten.org/docs/compiling/Building-Projects.html#emscripten-linker-output-files)
