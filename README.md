@@ -4,6 +4,16 @@ WebAssembly Dynamic Linking using [**Emscripten**.](https://emscripten.org/docs/
 
 ## Background
 
+There are 3 way to do dynamic linking with WebAssembly:
+1. Your C or C++ code can manually link to a module by using the ```dlopen``` function.
+2. You can instruct Emscripten that there are WebAssembly modules to link to by specifying them in the ```dynamicLibraries``` array of Emscripten’s generated JavaScript file. When Emscripten instantiates the WebAssembly module, it will automatically download and link modules that are specified in this array.
+3. In your JavaScript, you can manually take the exports of one module and pass them in as imports to another using the WebAssembly JavaScript API.
+
+**Reference:** 
+Chapter 7. Dyamic linking: The basics, from [WebAssembly in Action](https://www.manning.com/books/webassembly-in-action) by Gerard Gallant, published by Manning Books.
+
+## Purpose
+
 While the goal is to show how to build a WASM application that links to its WASM modules dynamically at run time, first we'll show how to statically link the WASM modules to the WASM application at time of build, for comparison purposes.
 
 [Read this slightly outdated article for additional background.](https://yushulx.medium.com/webassembly-building-standalone-and-dynamic-linking-modules-in-windows-bd4492d0688f) Then look below for sequence of commands and updated arguments.
@@ -50,9 +60,7 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
 
-```
-TODO: Figure out how dynamic linking works in a WASI environment.
-```
+**wasi-sdk** - The WASI-enabled WebAssembly C/C++ toolchain does not yet support dynamic libraries. See [notable-limitations](https://github.com/WebAssembly/wasi-sdk?tab=readme-ov-file#notable-limitations) for specific details.
 
 ### For running in a Web Browser (e.g., **Chrome**)
 
