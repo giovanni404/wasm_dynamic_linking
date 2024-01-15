@@ -10,13 +10,14 @@ There are 3 ways to do dynamic linking with WebAssembly:
 3. In your JavaScript, you can manually take the exports of one module and pass them in as imports to another using the WebAssembly JavaScript API.
 
 **Reference:** 
+
 Chapter 7. Dyamic linking: The basics, from [WebAssembly in Action](https://www.manning.com/books/webassembly-in-action) by Gerard Gallant, published by Manning Books.
 
 ## Purpose
 
-While the purpose of this is to show how to build a WASM application that links to its WASM modules dynamically at run time - first we'll see how to statically link the WASM modules to the WASM application at time of build, for comparison purposes. Option #2 above, using the ```dynamicLibraries``` array way, is ideal when compiling existing C/C++ source code to WASM, since this doesn't require altering any of the existing source code, unlike the other 2 ways.
+While the purpose of this is to show how to build a WASM application that links to its WASM modules dynamically at run time - first we'll see how to statically link the WASM modules to the WASM application at time of build, for comparison purposes. Option #2 above, using the ```dynamicLibraries``` array way, is ideal when compiling existing C/C++ source code to WASM, since this doesn't require altering any of the existing source code, unlike the other 2 ways would.
 
-[Read this slightly outdated article for additional background.](https://yushulx.medium.com/webassembly-building-standalone-and-dynamic-linking-modules-in-windows-bd4492d0688f) Then look below for sequence of commands and updated arguments.
+[Read this slightly outdated article for additional background.](https://yushulx.medium.com/webassembly-building-standalone-and-dynamic-linking-modules-in-windows-bd4492d0688f) As Emscription has undergone several revisions since time of the article's original writing, look below for the updated sequence of commands and arguments.
 
 ## Main Project Files
 
@@ -92,9 +93,11 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 #### Web Browser Output
 
 **Note:**
+
 In both cases, Web Browser output should be identical to that of the standalone WASM application (shown above), however for dynamic linking at run time to work, the modified main.js source code with the list of 'dynamicLibraries' to preload, must successfully execute!
 
 ![JavaScript Source Code image is supposed to appear here](images/js-src.png "Modified JavaScript source code containing list of 'dynamicLibraries' that must be preloaded")
 
-**Reference:** 
+**Reference:**
+
 [Emscripten linker output files cheat sheet.](https://emscripten.org/docs/compiling/Building-Projects.html#emscripten-linker-output-files)
