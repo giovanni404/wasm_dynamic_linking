@@ -1,23 +1,18 @@
 # wasm_dynamic_linking
 
-WebAssembly Dynamic Linking using [**Emscripten**.](https://emscripten.org/docs/compiling/Dynamic-Linking.html)
+WebAssembly (WASM) Dynamic Linking using **Emscripten**.[^1])
 
 ## Background
 
-There are 3 ways to do dynamic linking with WebAssembly:
-1. Your C or C++ code can manually link to a module by using the ```dlopen``` function.
-2. You can instruct Emscripten that there are WebAssembly modules to link to by specifying them in the ```dynamicLibraries``` array of Emscripten’s generated JavaScript file. When Emscripten instantiates the WebAssembly module, it will automatically download and link modules that are specified in this array.
-3. In your JavaScript, you can manually take the exports of one module and pass them in as imports to another using the WebAssembly JavaScript API.
+Three options are available for dynamic linking when using Emscripten with C or C++ source code:[^2]
 
-**Reference:** 
-
-Chapter 7. Dyamic linking: The basics, from [WebAssembly in Action](https://www.manning.com/books/webassembly-in-action) by Gerard Gallant, published by Manning Books.
+1. Manually link to a WASM module by using the ```dlopen``` function in your C or C++ source code.
+2. Instruct Emscripten that there are WASM modules to link to by specifying them in the ```dynamicLibraries``` array of Emscripten’s generated JavaScript source code. When Emscripten instantiates the WebAssembly module, it will automatically download and link modules that are specified in this array.
+3. Manually take the exports of one module and pass them in as imports to another using the WebAssembly JavaScript API in your JavaScript source code.
 
 ## Purpose
 
-While the purpose of this is to show how to build a WASM application that links to its WASM modules dynamically at run time - first we'll see how to statically link the WASM modules to the WASM application at time of build, for comparison purposes. Option #2 above, using the ```dynamicLibraries``` array way, is ideal when compiling existing C/C++ source code to WASM, since this doesn't require altering any of the existing source code, unlike the other 2 ways would.
-
-[Read this slightly outdated article for additional background.](https://yushulx.medium.com/webassembly-building-standalone-and-dynamic-linking-modules-in-windows-bd4492d0688f) As Emscription has undergone several revisions since time of the article's original writing, look below for the updated sequence of commands and arguments.
+While the purpose of this repository is to show how to build a WASM application that links to its WASM modules dynamically at run time - first we'll look at how to statically link the WASM modules to the WASM application at time of build, for comparison purposes. Option #2, using the ```dynamicLibraries``` array, may be the ideal method to use when compiling existing C or C++ code to WASM as it doesn't require altering the existing source code in a major way - only this method is describe below.
 
 ## Main Project Files
 
@@ -25,6 +20,8 @@ While the purpose of this is to show how to build a WASM application that links 
 2. foo1.c - WASM module
 3. foo2.c - WASM module
 4. pre.js - Contains the list of WASM modules that need to be preloaded (for dynamic linking to at run time) when the WASM application runs in a Web Browser
+
+**Note:** The types of files produced as output from the Emscripten Compiler Frontend depend on the flags[^3] and the name of the specified output file[^4] passed to ```emcc```. 
 
 ## Create a standalone WASM application containing WASM modules statically linked at build time:
 
@@ -61,7 +58,7 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 
 ### For running in a WASI Runtime (e.g., **wasmtime**)
 
-**wasi-sdk** - The WASI-enabled WebAssembly C/C++ toolchain does not yet support dynamic libraries. See [notable-limitations](https://github.com/WebAssembly/wasi-sdk?tab=readme-ov-file#notable-limitations) for specific details.
+**wasi-sdk** - The WASI-enabled WebAssembly C/C++ toolchain does not yet support dynamic libraries.[^5]
 
 ### For running in a Web Browser (e.g., **Chrome**)
 
@@ -70,7 +67,7 @@ $emcc foo1.c -s SIDE_MODULE=1 -o foo1.wasm
 $emcc foo2.c -s SIDE_MODULE=1 -o foo2.wasm
 ```
 
-These SIDE_MODULE can be dynamically linked to the WASM application a.k.a. MAIN_MODULE, in 2 ways:
+These SIDE_MODULE can be dynamically linked to the WASM application a.k.a. MAIN_MODULE, in two ways:
 
 1. Dynamically link WASM modules to WASM application at load time
 
@@ -92,12 +89,14 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 
 #### Web Browser Output
 
-**Note:**
-
-In both cases, Web Browser output should be identical to that of the standalone WASM application (shown above), however for dynamic linking at run time to work, the modified main.js source code with the list of 'dynamicLibraries' to preload, must successfully execute!
+**Note:** In both cases, Web Browser output should be identical to that of the standalone WASM application (shown above), however for dynamic linking at run time to work, the modified main.js source code with the list of 'dynamicLibraries' to preload, must successfully execute!
 
 ![JavaScript Source Code image is supposed to appear here](images/js-src.png "Modified JavaScript source code containing list of 'dynamicLibraries' that must be preloaded")
 
-**Reference:**
+##References:
 
-[Emscripten linker output files cheat sheet.](https://emscripten.org/docs/compiling/Building-Projects.html#emscripten-linker-output-files)
+[^1]: [Dynamic Linking (Emscripten documentation)](https://emscripten.org/docs/compiling/Dynamic-Linking.html)
+[^2]: [Dynamic Linking: a crash course](https://freecontent.manning.com/dynamic-linking-a-crash-course/)
+[^3]: [Emscripten Compiler Frontend (emcc)](https://emscripten.org/docs/tools_reference/emcc.html)
+[^4]: [Emscripten Linker output files cheat sheet](https://emscripten.org/docs/compiling/Building-Projects.html#emscripten-linker-output-files)
+[^5]: [Limitations of wasi-sdk](https://github.com/WebAssembly/wasi-sdk?tab=readme-ov-file#notable-limitations)
