@@ -93,10 +93,10 @@ $emrun main.html --browser "/mnt/c/Program Files (x86)/Google/Chrome/Application
 
 ![JavaScript Source Code image is supposed to appear here](images/js-src.png "Modified JavaScript source code containing list of 'dynamicLibraries' that must be preloaded")
 
-##References:
+## References:
 
 [^1]: [Dynamic Linking (Emscripten documentation)](https://emscripten.org/docs/compiling/Dynamic-Linking.html)
 [^2]: [Dynamic Linking: a crash course](https://freecontent.manning.com/dynamic-linking-a-crash-course/)
 [^3]: [Emscripten Compiler Frontend (emcc)](https://emscripten.org/docs/tools_reference/emcc.html)
 [^4]: [Emscripten Linker output files cheat sheet](https://emscripten.org/docs/compiling/Building-Projects.html#emscripten-linker-output-files)
-[^5]: [Limitations of wasi-sdk](https://github.com/WebAssembly/wasi-sdk?tab=readme-ov-file#notable-limitations)
+[^5]: [Notable Limitations of wasi-sdk](https://github.com/WebAssembly/wasi-sdk?tab=readme-ov-file#notable-limitations)
